@@ -22,10 +22,10 @@ class MoviesController < ApplicationController
 
   def similar
     @movie_title=params[:movie_title]
-    if Movie.find_by(title: @movie_title).director
+    if not Movie.find_by(title: @movie_title).director.empty?
       @sim_movies=Movie.similar_director_movies(Movie.find_by(title: @movie_title).director)
     else
-      flash[:notice] = "No director info found for #{Movie.find_by(title: @movie_title).title}"
+      flash[:notice] = "'#{Movie.find_by(title: @movie_title).title}' has no director info"
       redirect_to movies_path
     end
   end
