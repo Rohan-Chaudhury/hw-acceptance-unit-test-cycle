@@ -57,8 +57,6 @@ describe Movie do
             
             titlemovie3similar=[]
 
-            puts("asdasdasd")
-            puts(Movie.similar_director_movies(movie3.director))
             all_movie_3_similar=Movie.similar_director_movies(movie3.director)
 
             if not all_movie_3_similar.nil?

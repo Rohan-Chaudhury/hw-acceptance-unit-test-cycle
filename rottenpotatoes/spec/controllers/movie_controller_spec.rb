@@ -43,7 +43,7 @@ describe MoviesController do
 
         
 
-        it 'should go back to homepage if director does not exist' do
+        it 'should go back to index page if director does not exist' do
             get :similar, id: movie_3.id
             expect(response).to redirect_to(movies_path)
         end
@@ -55,7 +55,7 @@ describe MoviesController do
         let!(:movie_3) { Movie.create!(title: 'Alien') }
         let!(:movie_4) { Movie.create!(title: 'THX-1138', director: 'George Lucas') }
 
-        it 'should get all the movies' do
+        it 'should get all the movies to render' do
             get :index
             movies = []
             for i in assigns(:movies) 
@@ -114,6 +114,7 @@ describe MoviesController do
         end
         it 'should redirect to index page' do
             post :create, movie: {title: 'Star Wars', director: 'George Lucas'}
+            
             expect(response).to redirect_to(movies_path)
         end
     end
@@ -193,10 +194,12 @@ describe MoviesController do
         
         it 'should delete the movie from the database' do
             
-            expect { delete :destroy, id: movie_1.id}.to change(Movie, :count).by(-1)
+            delete :destroy, id: movie_1.id
+            
+            expect(Movie.count).to eq(1)
         end
         
-        it 'should redirect to index page' do
+        it 'should go back to index page' do
             
             delete :destroy, id: movie_1.id
             

@@ -24,10 +24,10 @@ module NavigationHelpers
     when /^the edit page for "(.*)"$/i
       edit_movie_path(Movie.find_by(title: $1).id)
 
-    when /^the details page for "(.*)"$/
+    when /^the details page for "(.*)"$/i
       movie_path(Movie.find_by(title: $1))
 
-    when /^the Similar Movies page for "(.*)"/
+    when /^the Similar Movies page for "(.*)"/i
       similar_movie_path(Movie.find_by(title: $1).id)
 
     else
