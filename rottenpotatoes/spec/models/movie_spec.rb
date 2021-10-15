@@ -30,7 +30,7 @@ describe Movie do
             expect(titlemovie2similar).to eql(['Blade Runner'])
           end
         
-         it 'does not find movies with same director' do
+         it 'does not find movies with different director' do
   
             titlemovie1similar=[]
             titlemovie2similar=[]
